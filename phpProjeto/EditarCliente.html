@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+</head>
+<body>
+    <h1>Editar Cliente</h1>
+    <form action="editarCliente.php" method="POST">
+        <table>
+            <tr>
+                <td>Cód. Cliente:</td>
+                <td><input type="number" name="codigo_cliente" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Razão Social:</td>
+                <td><input type="text" name="razao_social" class="input" required ></td>
+            </tr>
+            <tr>
+                <td>Nome Fantasia:</td>
+                <td><input type="text" name="nome_fantasia" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Endereço:</td>
+                <td><input type="text" name="endereco" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Complemento:</td>
+                <td><input type="text" name="complemento" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Bairro:</td>
+                <td><input type="text" name="bairro" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Cidade:</td>
+                <td><input type="text" name="cidade" class="input" required></td>
+            </tr>
+            <tr>
+                <td>estado:</td>
+                <td><input type="text" name="estado" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Data de inclusão(YYYYMMDD):</td>
+                <td><input type="text" name="data_inclusao" class="input" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Gravar">
+                    <input type="button" value="Cancelar" onclick="window.location.href='index.php'">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

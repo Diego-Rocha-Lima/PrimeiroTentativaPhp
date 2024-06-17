@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+</head>
+<body>
+    <h1>Cadastro de Contato</h1>
+    <form action="cadastroContato.php" method="POST">
+        <table>
+            <tr>
+                <td>Cód. Cliente:</td>
+                <td><input type="number" name="codigo_cliente" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Nome do contato:</td>
+                <td><input type="text" name="nome_do_contato" class="input" required ></td>
+            </tr>
+            <tr>
+                <td>Telefone 1:</td>
+                <td><input type="text" name="telefone_1" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Telefone 2:</td>
+                <td><input type="text" name="telefone_2" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Celular:</td>
+                <td><input type="text" name="celular" class="input" required></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" class="input" required></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Gravar">
+                    <input type="button" value="Cancelar" onclick="window.location.href='index.php'">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
