@@ -9,31 +9,45 @@
   </head>
   
   <body>
-  
+          
+    <button><a href="tabelaContatos.php">Ir para tabela contatos</a></button>      
+    <br/>
+    
   <form method="POST" action="tabelaCadastro.php">
-  <label>Qual id voce quer deletar seu fracassado</label>
+    <br/>
+   
+  <label>Selecione o cliente(Cod. Cliente) que voce deseja deletar:</label>
     <input type="number" name="deletar">
     <input type="submit" value="Deletar">       
     </form>
 
 
     <?php 
-
+  $a="";
 include("conexao.inc");
 
-$idDeletar = $_POST['deletar'];
 
-$sql = "DELETE FROM novosclientes WHERE id=$idDeletar";
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletar'])){
+
+  $idDeletar = $_POST['deletar'];
+
+$sql = "DELETE FROM novosclientes
+WHERE id = $idDeletar
+  AND NOT EXISTS (SELECT cod_clientes FROM contato WHERE cod_clientes = $idDeletar);";
   
 $res = mysqli_query($con,$sql);
+  $affected_rows = mysqli_affected_rows($con);
+    if ($affected_rows == 1) {
+      echo "Cliente deletado com sucesso!";
+      
+    } 
+    else {
+      $a = "Não foi possível excluir o cliente.</br> Verifique se o id foi digitado corretamente, se esse não for o caso, ele possui um contato cadastrado. </br>O cliente só poderá ser excluído após excluir o contato.";
+      echo $a;
+    }
+}
 
 
-  if ($res == 1) {
-    echo "Cliente deletado com sucesso!";
-    
-  } else {
-    echo "Erro ao deletar o cliente: ";
-  }
 
 
 
@@ -44,29 +58,35 @@ mysqli_close($con);
 
 
 ?>
-
-
-    <a href="./cadastro.html">Ir para o formulario</a>
-    <a href="./Editar.html">Ir para o editar</a>
+    
+    <h1>Tabela clientes</h1>
+    <a href="./cadastroCliente.html">Adicionar novo cliente</a> </br> </br> 
+    <a href="./EditarCliente.html">Editar informações do cliente</a>
+    </br>
+    </br>
     <table >
         <thead>
             <tr>
               <th scope="col">Cod. Cliente</th>
               <th scope="col">Razão social</th>
               <th scope="col">Nome Fantasia</th>
-              <th scope="col">Data de Inclisão</th>
-              <th scope="col">N contatos</th>
-              <th scope="col">Modificações</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">Complemento</th>
+              <th scope="col">Bairro</th>
+              <th scope="col">cidade</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Data de Inclusão</th>
+              
             </tr>
           </thead>
 
           <tbody>
-
+          
 
             <?php
             include("conexao.inc");
 
-            $sql = "SELECT * FROM novocliente.novosclientes";
+            $sql = "SELECT * FROM tiozadb.novosclientes";
 
             $res = mysqli_query($con,$sql);
 
@@ -74,15 +94,23 @@ mysqli_close($con);
              $id = $reg[0];
              $razao = $reg[2];
              $nomeF = $reg[3];
+             $end = $reg[4];
+             $comp = $reg[5];
+             $bairro = $reg[6];
+             $cidade = $reg[7];
+             $estado = $reg[8];
              $data = $reg[9];
 
             echo "<tr>
             <th scope='row'>$id</th>
             <td>$razao</td>
             <td> $nomeF</td>
+            <td> $end</td>
+            <td> $comp</td>
+            <td> $bairro</td>
+            <td> $cidade</td>
+            <td> $estado</td>
             <td>$data</td>
-            <td>2</td>
-            <td><button id='$id' class='btnExcluir'>Excluir</button></td>
             </tr>";
 
            }
@@ -99,10 +127,17 @@ mysqli_close($con);
 
 
 
+    
+
+
+
 
 
 
  
 </body>
 
+
+
 </html>
+

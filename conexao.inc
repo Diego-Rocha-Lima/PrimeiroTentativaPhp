@@ -7,10 +7,10 @@
 
   $con = mysqli_connect($host,$user,$senha);
     //db da minha maquina
-    mysqli_select_db($con,"novocliente");
+    mysqli_select_db($con,"tiozadb");
     
     if(!$con){
-        die('Conexão falhou' . mysqli_connect_error());
+        die('conexão falhou' . mysqli_connect_error());
     }
 
 ?>
